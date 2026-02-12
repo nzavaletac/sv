@@ -287,25 +287,25 @@
           class="foto"
           style="--x: -100vw; --y: -50vh; --r: -45deg; --r-final: -2deg"
         >
-          <img src="foto1.jpg" />
+          <img src="foto1.webp" />
         </div>
         <div
           class="foto"
           style="--x: 100vw; --y: -50vh; --r: 45deg; --r-final: 2deg"
         >
-          <img src="foto2.jpg" />
+          <img src="foto2.webp" />
         </div>
         <div
           class="foto"
           style="--x: -100vw; --y: 50vh; --r: -20deg; --r-final: -3deg"
         >
-          <img src="foto3.jpg" />
+          <img src="foto3.webp" />
         </div>
         <div
           class="foto"
           style="--x: 100vw; --y: 50vh; --r: 20deg; --r-final: 3deg"
         >
-          <img src="foto4.jpg" />
+          <img src="foto4.webp" />
         </div>
       </div>
     </div>
@@ -401,7 +401,7 @@
       function crearElemento() {
         const el = document.createElement("div");
         el.classList.add("elemento");
-        const opciones = ["❤️", "🌹", "💖", "✨", "🌼", "🌻", "🧸", "🌅",""];
+        const opciones = ["❤️", "🌹", "💖", "✨", "🌼", "🌻", "🧸", "🌅", ""];
         el.innerHTML = opciones[Math.floor(Math.random() * opciones.length)];
         el.style.left = Math.random() * 100 + "vw";
         el.style.animationDuration = Math.random() * 3 + 3 + "s";
