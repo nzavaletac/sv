@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>❤️ Feliz San Valentín ❤️</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Dancing+Script:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        text-align: center;
+        overflow: hidden;
+        color: white;
+        background: linear-gradient(135deg, #ff4b6e, #ff8fa3, #ffc2d1);
+        transition: background 2s ease;
+      }
+
+      body.romantico {
+        background: radial-gradient(circle at top, #ff4b6e, #b31244, #4a001f);
+      }
+
+      .fondo-corazones {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+      }
+
+      .corazon-fondo {
+        position: absolute;
+        font-size: 80px;
+        opacity: 0.06;
+        animation: flotar 25s linear infinite;
+      }
+
+      @keyframes flotar {
+        from {
+          transform: translateY(100vh);
+        }
+        to {
+          transform: translateY(-10vh);
+        }
+      }
+
+      #intro {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+        animation: fadeOut 4s forwards;
+        animation-delay: 3s;
+      }
+
+      @keyframes fadeOut {
+        to {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+
+      #inicio {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        position: relative;
+      }
+
+      #inicio h1 {
+        font-size: 3em;
+        margin-bottom: 40px;
+      }
+
+      button {
+        padding: 15px 35px;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin: 10px;
+      }
+
+      #si {
+        background: white;
+        color: #ff4b6e;
+        font-weight: bold;
+      }
+      #si:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px white;
+      }
+      #no {
+        background: #2c2c2c;
+        color: white;
+        position: absolute;
+      }
+
+      #contenido {
+        display: none;
+        padding: 40px;
+        overflow-x: hidden;
+      }
+
+      .titulo-san-valentin {
+        font-family: "Dancing Script", cursive;
+        font-size: clamp(3em, 8vw, 5em);
+        margin: 20px 0;
+        animation: zoomIn 1s ease-out;
+      }
+
+      @keyframes zoomIn {
+        from {
+          transform: scale(0.5);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .tiempo {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .caja {
+        background: white;
+        padding: 15px 25px;
+        border-radius: 20px;
+      }
+      .numero {
+        font-size: 2em;
+        font-weight: 600;
+        color: #ff4b6e;
+      }
+      .label {
+        color: #7a1c2f;
+      }
+
+      #btnCarta {
+        background: white;
+        color: #ff4b6e;
+        margin-top: 30px;
+      }
+      .carta {
+        display: none;
+        max-width: 700px;
+        margin: 40px auto;
+        perspective: 1000px;
+      }
+      .contenido-carta {
+        background: white;
+        color: #7a1c2f;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 25px 40px rgba(0, 0, 0, 0.3);
+        transform: rotateX(-90deg);
+        transform-origin: top;
+        transition: 1s ease;
+      }
+      .carta.mostrar .contenido-carta {
+        transform: rotateX(0deg);
+      }
+
+      /* GALERÍA CON EFECTO DE APARICIÓN */
+      .galeria {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+        padding: 40px;
+      }
+
+      .foto {
+        background: white;
+        padding: 12px;
+        border-radius: 15px;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.25);
+        opacity: 0; /* Empiezan invisibles */
+        transition: 0.4s;
+      }
+
+      /* Animaciones de entrada personalizada */
+      .foto.aparecer {
+        animation: volarIn 1.2s forwards;
+      }
+
+      @keyframes volarIn {
+        0% {
+          opacity: 0;
+          transform: translate(var(--x), var(--y)) rotate(var(--r));
+        }
+        100% {
+          opacity: 1;
+          transform: translate(0, 0) rotate(var(--r-final));
+        }
+      }
+
+      .foto img {
+        width: 260px;
+        height: 320px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+
+      .elemento {
+        position: fixed;
+        top: -20px;
+        font-size: 28px;
+        animation: caer linear infinite;
+      }
+      @keyframes caer {
+        to {
+          transform: translateY(110vh);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="intro">
+      <h1>Hay algo importante que quiero preguntarte... ❤️</h1>
+    </div>
+
+    <div class="fondo-corazones" id="fondo"></div>
+
+    <div id="inicio">
+      <h1>¿Quieres ser mi primer San Valentín? ❤️</h1>
+      <button id="si" onclick="aceptar()">Sí, quiero 💖</button>
+      <button id="no">No 😢 F</button>
+    </div>
+
+    <div id="contenido">
+      <h1 class="titulo-san-valentin">¡Feliz San Valentín, mi vida!</h1>
+
+      <h1>Llevamos juntos ❤️</h1>
+      <div class="tiempo">
+        <div class="caja">
+          <div class="numero" id="dias"></div>
+          <div class="label">Días</div>
+        </div>
+        <div class="caja">
+          <div class="numero" id="horas"></div>
+          <div class="label">Horas</div>
+        </div>
+        <div class="caja">
+          <div class="numero" id="minutos"></div>
+          <div class="label">Minutos</div>
+        </div>
+        <div class="caja">
+          <div class="numero" id="segundos"></div>
+          <div class="label">Segundos</div>
+        </div>
+      </div>
+
+      <button id="btnCarta" onclick="mostrarCarta()">Abrir carta 💌</button>
+
+      <div class="carta" id="carta">
+        <div class="contenido-carta">
+          <p>
+            Me siento increíblemente feliz de tenerte en mi vida. Me encanta que
+            seas mi primer San Valentín. Contigo todo se siente más bonito y más
+            real. Te adoro hoy, mañana y siempre ❤️
+          </p>
+        </div>
+      </div>
+
+      <h2>📸 Nuestros Momentos 📸</h2>
+      <div class="galeria">
+        <div
+          class="foto"
+          style="--x: -100vw; --y: -50vh; --r: -45deg; --r-final: -2deg"
+        >
+          <img src="foto1.jpg" />
+        </div>
+        <div
+          class="foto"
+          style="--x: 100vw; --y: -50vh; --r: 45deg; --r-final: 2deg"
+        >
+          <img src="foto2.jpg" />
+        </div>
+        <div
+          class="foto"
+          style="--x: -100vw; --y: 50vh; --r: -20deg; --r-final: -3deg"
+        >
+          <img src="foto3.jpg" />
+        </div>
+        <div
+          class="foto"
+          style="--x: 100vw; --y: 50vh; --r: 20deg; --r-final: 3deg"
+        >
+          <img src="foto4.jpg" />
+        </div>
+      </div>
+    </div>
+
+    <audio id="musica" loop>
+      <source src="mi-cancion.mp4" type="audio/mpeg" volume="0.5" />
+    </audio>
+
+    <script>
+      const fechaInicio = new Date("2025-11-01T00:00:00");
+
+      function actualizarContador() {
+        const ahora = new Date();
+        const diff = ahora - fechaInicio;
+        document.getElementById("dias").innerText = Math.floor(
+          diff / (1000 * 60 * 60 * 24)
+        );
+        document.getElementById("horas").innerText = Math.floor(
+          (diff / (1000 * 60 * 60)) % 24
+        );
+        document.getElementById("minutos").innerText = Math.floor(
+          (diff / (1000 * 60)) % 60
+        );
+        document.getElementById("segundos").innerText = Math.floor(
+          (diff / 1000) % 60
+        );
+      }
+      setInterval(actualizarContador, 1000);
+      actualizarContador();
+
+      const botonNo = document.getElementById("no");
+      botonNo.addEventListener("mouseover", () => {
+        botonNo.style.top = Math.random() * 80 + "%";
+        botonNo.style.left = Math.random() * 80 + "%";
+      });
+
+      function aceptar() {
+        // EFECTO DE FUEGOS ARTIFICIALES REALES (Explosiones aleatorias)
+        var duration = 15 * 1000;
+        var animationEnd = Date.now() + duration;
+        var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+        function randomInRange(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        var interval = setInterval(function () {
+          var timeLeft = animationEnd - Date.now();
+
+          if (timeLeft <= 0) {
+            return clearInterval(interval);
+          }
+
+          var particleCount = 50 * (timeLeft / duration);
+          // Explota en lugares aleatorios de la pantalla
+          confetti(
+            Object.assign({}, defaults, {
+              particleCount,
+              origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+            })
+          );
+          confetti(
+            Object.assign({}, defaults, {
+              particleCount,
+              origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+            })
+          );
+        }, 250);
+
+        document.getElementById("inicio").style.display = "none";
+        document.getElementById("contenido").style.display = "block";
+
+        // Activar animación de las fotos una por una
+        const fotos = document.querySelectorAll(".foto");
+        fotos.forEach((foto, index) => {
+          setTimeout(() => {
+            foto.classList.add("aparecer");
+          }, index * 300); // Aparecen con un pequeño retraso entre ellas
+        });
+
+        document.body.classList.add("romantico");
+        document.body.style.overflow = "auto";
+        document.getElementById("musica").play();
+      }
+
+      function mostrarCarta() {
+        document.getElementById("carta").style.display = "block";
+        setTimeout(() => {
+          document.getElementById("carta").classList.add("mostrar");
+        }, 50);
+      }
+
+      function crearElemento() {
+        const el = document.createElement("div");
+        el.classList.add("elemento");
+        const opciones = ["❤️", "🌹", "💖", "✨", "🌼", "🌻", "🧸", "🌅",""];
+        el.innerHTML = opciones[Math.floor(Math.random() * opciones.length)];
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.animationDuration = Math.random() * 3 + 3 + "s";
+        document.body.appendChild(el);
+        setTimeout(() => {
+          el.remove();
+        }, 6000);
+      }
+      setInterval(crearElemento, 300);
+
+      for (let i = 0; i < 15; i++) {
+        const c = document.createElement("div");
+        c.classList.add("corazon-fondo");
+        c.innerHTML = "❤️";
+        c.style.left = Math.random() * 100 + "%";
+        c.style.animationDuration = 20 + Math.random() * 10 + "s";
+        document.getElementById("fondo").appendChild(c);
+      }
+    </script>
+  </body>
+</html>
