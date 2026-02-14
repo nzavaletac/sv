@@ -230,6 +230,42 @@
           transform: translateY(110vh);
         }
       }
+
+      /* ESTOY AGREGANDO OTRO CODIGO */
+      /* AJUSTES PARA MÓVILES */
+      @media (max-width: 600px) {
+        /* Título principal: lo hacemos más grande y visible */
+        .titulo-san-valentin {
+          font-size: 3.5rem !important; /* Aumenta el impacto al inicio */
+          padding: 10px;
+          line-height: 1.1;
+        }
+
+        /* Títulos secundarios (Haciéndome feliz, Momentos, etc.) */
+        h1,
+        h2 {
+          font-size: 1.8rem !important; /* Los reducimos para que no corten línea */
+          margin-top: 30px;
+        }
+
+        /* Ajuste para el texto de la carta */
+        .contenido-carta p {
+          font-size: 1.1rem;
+          line-height: 1.4;
+        }
+
+        /* Ajuste para las cajas del contador (para que quepan 2 y 2) */
+        .tiempo {
+          gap: 10px;
+        }
+        .caja {
+          padding: 10px;
+          min-width: 70px;
+        }
+        .numero {
+          font-size: 1.5rem;
+        }
+      }
     </style>
   </head>
 
