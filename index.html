@@ -485,7 +485,7 @@
       function crearElemento() {
         const el = document.createElement("div");
         el.classList.add("elemento");
-        const opciones = ["❤️", "🌹", "💖", "✨", "🌼", "🌻", "🧸", "🌅", "🎈"];
+        const opciones = ["❤️", "🌹", "💖", "✨", "🌼", "🌻", "🧸", "🌅"];
         el.innerHTML = opciones[Math.floor(Math.random() * opciones.length)];
         el.style.left = Math.random() * 100 + "vw";
         el.style.animationDuration = Math.random() * 3 + 3 + "s";
