@@ -243,45 +243,62 @@
     <div id="inicio">
       <h1>¿Quieres ser mi primer San Valentín? ❤️</h1>
       <button id="si" onclick="aceptar()">Sí, quiero 💖</button>
-      <button id="no">No 😢 F</button>
+      <button id="no">No quiero 😢 F bebé</button>
     </div>
 
     <div id="contenido">
-      <h1 class="titulo-san-valentin">¡Feliz San Valentín, mi vida!</h1>
+      <h1 class="titulo-san-valentin">
+        ¡Feliz San Valentín, mi Estrella Fugáz 🌠!
+      </h1>
 
-      <h1>Llevamos juntos ❤️</h1>
+      <h1>Haciéndome el hombre más feliz hace: 😍✨</h1>
       <div class="tiempo">
         <div class="caja">
           <div class="numero" id="dias"></div>
-          <div class="label">Días</div>
+          <div class="label">Días de risas</div>
         </div>
         <div class="caja">
           <div class="numero" id="horas"></div>
-          <div class="label">Horas</div>
+          <div class="label">Horas de amor</div>
         </div>
         <div class="caja">
           <div class="numero" id="minutos"></div>
-          <div class="label">Minutos</div>
+          <div class="label">Minutos de ternura</div>
         </div>
         <div class="caja">
           <div class="numero" id="segundos"></div>
-          <div class="label">Segundos</div>
+          <div class="label">Segundos de pur magia</div>
         </div>
       </div>
 
-      <button id="btnCarta" onclick="mostrarCarta()">Abrir carta 💌</button>
+      <button id="btnCarta" onclick="mostrarCarta()">Léeme, mi vida 💌</button>
 
       <div class="carta" id="carta">
         <div class="contenido-carta">
           <p>
-            Me siento increíblemente feliz de tenerte en mi vida. Me encanta que
-            seas mi primer San Valentín. Contigo todo se siente más bonito y más
-            real. Te adoro hoy, mañana y siempre ❤️
+            No tenia planes de estar con nadie, estaba bien solo, tranquilo con
+            mi vida y que crees llegaste tú la señorita perfecta con esa sonrisa
+            perfecta y con esos hermosos ojitos que brillan cuando me miran.
+            Ahora que estas conmigo me siento increíblemente feliz de tenerte en
+            mi vida. Me encanta que seas mi primer San Valentín. Contigo todo se
+            siente más bonito y más real. Mi vida es mejor contigo. Te adoro
+            hoy, mañana y siempre ❤️
+            <br />
+            <span
+              style="
+                font-family: 'Dancing Script', cursive;
+                font-size: 1.8em;
+                color: #ff4b6e;
+                font-weight: bold;
+              "
+            >
+              Atte. Tu golden retriever. 🐶
+            </span>
           </p>
         </div>
       </div>
 
-      <h2>📸 Nuestros Momentos 📸</h2>
+      <h2>📸 Nuestra historia en fotos... y lo que falta por vivir ✍️❤️ 📸</h2>
       <div class="galeria">
         <div
           class="foto"
@@ -342,15 +359,66 @@
         botonNo.style.left = Math.random() * 80 + "%";
       });
 
+      // function aceptar() {
+      //   // EFECTO DE FUEGOS ARTIFICIALES REALES (Explosiones aleatorias)
+      //   var duration = 15 * 1000;
+      //   var animationEnd = Date.now() + duration;
+      //   var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+      //   function randomInRange(min, max) {
+      //     return Math.random() * (max - min) + min;
+      //   }
+
+      //   var interval = setInterval(function () {
+      //     var timeLeft = animationEnd - Date.now();
+
+      //     if (timeLeft <= 0) {
+      //       return clearInterval(interval);
+      //     }
+
+      //     var particleCount = 50 * (timeLeft / duration);
+      //     // Explota en lugares aleatorios de la pantalla
+      //     confetti(
+      //       Object.assign({}, defaults, {
+      //         particleCount,
+      //         origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      //       })
+      //     );
+      //     confetti(
+      //       Object.assign({}, defaults, {
+      //         particleCount,
+      //         origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      //       })
+      //     );
+      //   }, 250);
+
+      //   document.getElementById("inicio").style.display = "none";
+      //   document.getElementById("contenido").style.display = "block";
+
+      //   // Activar animación de las fotos una por una
+      //   const fotos = document.querySelectorAll(".foto");
+      //   fotos.forEach((foto, index) => {
+      //     setTimeout(() => {
+      //       foto.classList.add("aparecer");
+      //     }, index * 300); // Aparecen con un pequeño retraso entre ellas
+      //   });
+
+      //   document.body.classList.add("romantico");
+      //   document.body.style.overflow = "auto";
+      //   document.getElementById("musica").play();
+      // }
+
       function aceptar() {
-        // EFECTO DE FUEGOS ARTIFICIALES REALES (Explosiones aleatorias)
+        // Configuramos el confeti para que se vea por encima de TODO
+        const f_confetti = (options) => {
+          confetti({
+            ...options,
+            zIndex: 10000,
+          });
+        };
+
         var duration = 15 * 1000;
         var animationEnd = Date.now() + duration;
-        var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-        function randomInRange(min, max) {
-          return Math.random() * (max - min) + min;
-        }
 
         var interval = setInterval(function () {
           var timeLeft = animationEnd - Date.now();
@@ -359,36 +427,52 @@
             return clearInterval(interval);
           }
 
-          var particleCount = 50 * (timeLeft / duration);
-          // Explota en lugares aleatorios de la pantalla
-          confetti(
-            Object.assign({}, defaults, {
-              particleCount,
-              origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-            })
-          );
-          confetti(
-            Object.assign({}, defaults, {
-              particleCount,
-              origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-            })
-          );
+          var particleCount = 100 * (timeLeft / duration);
+
+          // Explosiones laterales para que llenen la pantalla
+          f_confetti({
+            particleCount,
+            origin: { x: Math.random(), y: Math.random() - 0.2 },
+            colors: [
+              "#ff4b6e",
+              "#ffffff",
+              "#ffc2d1",
+              "#E91E63",
+              "#FFD700",
+              "#FF7F50",
+              "#D8BFD8",
+            ], // Colores de tu temática
+          });
         }, 250);
 
+        // Cambiamos las pantallas
         document.getElementById("inicio").style.display = "none";
         document.getElementById("contenido").style.display = "block";
 
-        // Activar animación de las fotos una por una
+        // Activamos animaciones de fotos
         const fotos = document.querySelectorAll(".foto");
         fotos.forEach((foto, index) => {
           setTimeout(() => {
             foto.classList.add("aparecer");
-          }, index * 300); // Aparecen con un pequeño retraso entre ellas
+          }, index * 300);
         });
 
+        // Aplicamos el fondo romántico y habilitamos scroll
         document.body.classList.add("romantico");
         document.body.style.overflow = "auto";
-        document.getElementById("musica").play();
+
+        // --- AUDIO CON FADE-IN ---
+        const musica = document.getElementById("musica");
+        musica.volume = 0;
+        musica.play();
+
+        let fadeAudio = setInterval(() => {
+          if (musica.volume < 0.4) {
+            musica.volume = (parseFloat(musica.volume) + 0.02).toFixed(2);
+          } else {
+            clearInterval(fadeAudio);
+          }
+        }, 200);
       }
 
       function mostrarCarta() {
@@ -401,14 +485,14 @@
       function crearElemento() {
         const el = document.createElement("div");
         el.classList.add("elemento");
-        const opciones = ["❤️", "🌹", "💖", "✨", "🌼", "🌻", "🧸", "🌅", ""];
+        const opciones = ["❤️", "🌹", "💖", "✨", "🌼", "🌻", "🧸", "🌅", "🎈"];
         el.innerHTML = opciones[Math.floor(Math.random() * opciones.length)];
         el.style.left = Math.random() * 100 + "vw";
         el.style.animationDuration = Math.random() * 3 + 3 + "s";
         document.body.appendChild(el);
         setTimeout(() => {
           el.remove();
-        }, 6000);
+        }, 10000);
       }
       setInterval(crearElemento, 300);
 
